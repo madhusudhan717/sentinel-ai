@@ -1,7 +1,6 @@
 import uuid
 from datetime import datetime
-
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class AgentCreate(BaseModel):
@@ -21,4 +20,9 @@ class AgentResponse(BaseModel):
     risk_level: str
     created_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)
+    class Config:
+        from_attributes = True
+
+
+class AgentCreateResponse(AgentResponse):
+    api_key: str  # raw key, only ever present in the creation response
