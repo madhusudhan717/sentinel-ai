@@ -3,8 +3,10 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.database.session import get_db, engine, Base
-from app.models.agent import Agent  # noqa: F401 - import so Base knows about this table
-from app.api import agents
+from app.models.agent import Agent  # noqa: F401
+from app.models.role import Role  # noqa: F401
+from app.models.permission import Permission  # noqa: F401
+from app.api import agents, roles, permissions
 
 app = FastAPI(
     title="Sentinel-AI",
@@ -19,6 +21,8 @@ def on_startup():
 
 
 app.include_router(agents.router)
+app.include_router(roles.router)
+app.include_router(permissions.router)
 
 
 @app.get("/")

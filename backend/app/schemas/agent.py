@@ -9,6 +9,7 @@ class AgentCreate(BaseModel):
     department: str
     purpose: str
     risk_level: str = "medium"
+    role_name: str | None = None
 
 
 class AgentResponse(BaseModel):
@@ -25,4 +26,4 @@ class AgentResponse(BaseModel):
 
 
 class AgentCreateResponse(AgentResponse):
-    api_key: str  # raw key, only ever present in the creation response
+    api_key: str
